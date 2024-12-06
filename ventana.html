@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Estudiantes</title>
+    <link rel="stylesheet" href="ventana.css">
+    <!-- Bootstrap CSS (necesario para los modales) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="img-1">
+        <img src="img.webp" alt="Logo">
+    </div>
+    <h2>Gestión de Estudiantes</h2>
+    <div id="mensajes"></div>
+
+    <!-- Botones de acciones -->
+    <button onclick="openCreateModal()" class="btn">Crear Estudiante</button>
+    <button onclick="openEditModal()" class="btn">Modificar Estudiante</button>
+    <button onclick="openDeleteModal()" class="btn"> Busqueda y baja de Estudiante </button>
+    <button onclick="mostrarCuposDisponibles()" class="btn">Cupos Disponibles</button>
+    <div class="menu" onclick="cerrarSesion()">Cerrar sesión</div>
+
+    <!-- Modal de Crear Estudiante -->
+                                     <!-- orden de la tabla-->
+    <div class="modal fade" id="createModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Crear Estudiante</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formCreate">
+                        <input id="nombre" type="text" class="input" placeholder="Nombre" required>
+                        <input id="apellido" type="text" class="input" placeholder="Apellido" required>
+                        <input id="dni" type="text" class="input" placeholder="DNI" required oninput="validarDni(event) ">
+                        <input id="gmail" type="gmail" class="input" placeholder="Gmail">
+                        <input id="fecha de nacimiento" type="imput" class="input" placeholder="fecha de nacimiento "required>
+                        <input id="telefono" type="number" class="input" placeholder="telefono">
+                        <input id="pais" type="text" class="input" placeholder="pais">
+                        <input id="edad" type="number" class="input" placeholder="edad">
+                        <input id="inscripcion" type="text" class="input" placeholder="Inscripción">
+                        <input id="localidad" type="text" class="input" placeholder="Localidad">
+                        <input id="direccion" type="text" class="input" placeholder="Dirección" required>
+                        <button type="button" onclick="crearEstudiante()" class="btn">Crear</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Modificar Estudiante -->
+                                       
+    <div class="modal fade" id="editModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modificar Estudiante</h5>
+                                                     <!--se usa para borar componentes claves en modales --> 
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>DNI</th>
+                                <th>gmail</th>
+                                <th>telefono</th>
+                                <th>fecha de nacimiento</th>
+                                <th>pais</th>
+                            </tr>
+                        </thead>    <!-- modifica el cuerpo de la tabla -->
+                        <tbody id="table__body_modify"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+       <!--   Modal de Eliminar Estudiante --> 
+   <div class="modal fade" id="deleteModal" tabindex="-1">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Eliminar Estudiante</h5>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">                    
+                <h2>¿Está seguro que quiere borrar los datos?</h2>
+                <p>preione S/N</p>
+                <button id="btnS" class="btn-close" data-bs-dismiss="modal">SI</button>
+                <button id="btnN" class="btn-close" data-bs-dismiss="modal">NO</button>
+                <table class="table">
+                   
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>DNI</th>
+                          <!--   <th>gamil</th>
+                            <th>telefono</th>
+                            <th>fecha</th>
+                            <th>pais</th> -->
+                        </tr>
+                    </thead>  <!-- eliminasion en fila --> 
+                    <tbody id="table__body_delete"></tbody>
+                </table>
+               <!--  <button id="confirmDeleteButton" class="btn btn-danger"></button>
+                <button class="btn btn-secondary" data-bs-dismiss="modal"></button> -->
+            </div>
+        </div>
+    </div>
+</div>        
+ <!-- Modal de Cupos Disponibles -->
+ <div class="modal fade" id="cuposdisponiblesModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cupos Disponibles</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p id="cuposDisponiblesContenido">Cargando...</p> <!-- Aquí se cargará el contenido dinámico -->
+            </div>
+        </div>
+    </div>
+</div>         
+    <script src="ventana.js"></script>
+    <!-- Bootstrap JS (necesario para los modales) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
